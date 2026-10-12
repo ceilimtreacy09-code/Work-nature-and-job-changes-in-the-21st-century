@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en-IE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Work and identity in the 21st century</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Literata:opsz,wght@7..72,400..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#E8EEF0; --surface:#F6F9FA; --ink:#13242F; --muted:#445966; --line:#BFCDD4;
+  --accent:#0B6E7C; --accent-ink:#FFFFFF; --badge:#F3C531;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --text:"Literata",Georgia,"Times New Roman",serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1D26; --surface:#172A36; --ink:#E6EEF1; --muted:#A3B7C1; --line:#2B4352;
+    --accent:#4FC3D3; --accent-ink:#0F1D26;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1D26; --surface:#172A36; --ink:#E6EEF1; --muted:#A3B7C1; --line:#2B4352;
+  --accent:#4FC3D3; --accent-ink:#0F1D26;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--text);font-size:1.0625rem;line-height:1.7;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 clamp(1rem,4vw,2rem)}
+p{max-width:66ch;margin:0 0 1.1rem}
+h1,h2,h3{font-family:var(--display);margin:0}
+
+/* top bar */
+.top{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.1rem 0;flex-wrap:wrap}
+.top nav{display:flex;gap:1.1rem;flex-wrap:wrap;font-family:var(--display);font-weight:600;font-size:.95rem}
+.top nav a{color:var(--ink);text-decoration:none;border-bottom:2px solid transparent}
+.top nav a:hover{border-bottom-color:var(--accent)}
+.btn-ghost{font:600 .85rem var(--display);padding:.4rem .8rem;border-radius:999px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+
+/* hero */
+.hero{max-width:760px;padding:2.5rem 0 4.5rem}
+h1{font-weight:700;font-size:clamp(2.3rem,6vw,4.1rem);line-height:1.03;letter-spacing:-.02em;margin-bottom:1.25rem}
+.lede{font-size:1.2rem;color:var(--muted);max-width:34em}
+.hero-links{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.6rem}
+.btn{display:inline-block;font:700 1rem var(--display);padding:.75rem 1.3rem;border-radius:10px;background:var(--accent);color:var(--accent-ink);text-decoration:none}
+.btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+
+.badge-stack{display:flex;flex-direction:column;align-items:center}
+.strap{width:36px;height:80px;background:var(--accent);border-radius:0 0 3px 3px}
+.clip{width:54px;height:16px;background:#8B9AA3;border-radius:4px;margin-top:-2px;position:relative;z-index:1}
+.badge{width:min(100%,290px);background:var(--badge);color:#13242F;border-radius:18px;padding:1.5rem 1.4rem 1.2rem;box-shadow:0 22px 40px -20px rgba(0,0,0,.5);transform:rotate(-2deg);margin-top:-6px}
+.slot{width:56px;height:8px;border-radius:99px;background:rgba(19,36,47,.28);margin:0 auto 1rem}
+.photo{width:84px;height:84px;border-radius:50%;background:rgba(19,36,47,.14);margin:0 auto 1rem;position:relative;overflow:hidden}
+.photo::before{content:"";position:absolute;left:50%;top:16px;width:30px;height:30px;border-radius:50%;background:rgba(19,36,47,.45);transform:translateX(-50%)}
+.photo::after{content:"";position:absolute;left:50%;top:50px;width:56px;height:56px;border-radius:50%;background:rgba(19,36,47,.45);transform:translateX(-50%)}
+.badge .nm{font:600 .95rem var(--display);text-align:center;opacity:.75}
+.badge .role{font:700 1.65rem/1.1 var(--display);text-align:center;min-height:3.7rem;display:flex;align-items:center;justify-content:center;margin:.35rem 0;transition:opacity .25s,transform .25s}
+.badge .also{font:500 .95rem var(--display);text-align:center;min-height:1.5rem;transition:opacity .25s}
+.badge .role.swap,.badge .also.swap{opacity:0}
+.badge .role.swap{transform:translateY(6px)}
+.barcode{height:34px;margin-top:1rem;border-radius:3px;background:repeating-linear-gradient(90deg,#13242F 0 2px,transparent 2px 5px,#13242F 5px 6px,transparent 6px 10px)}
+.badge-ctl{margin-top:1.2rem}
+
+/* sections */
+section{padding:3.6rem 0;border-top:1px solid var(--line)}
+h2{font-weight:700;font-size:clamp(1.7rem,3.8vw,2.45rem);line-height:1.1;letter-spacing:-.012em;margin-bottom:1.1rem;max-width:20em}
+h3{font-weight:650;font-size:1.25rem;line-height:1.2;margin-bottom:.6rem}
+
+.split{display:grid;grid-template-columns:1fr 1fr;margin:2rem 0;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.split>div{padding:1.4rem 1.6rem}
+.split>div:first-child{border-right:1px solid var(--line)}
+.split ul{margin:0;padding:0;list-style:none}
+.split li{padding:.45rem 0 .45rem 1.3rem;position:relative;border-bottom:1px dotted var(--line)}
+.split li:last-child{border-bottom:0}
+.split li::before{content:"";position:absolute;left:0;top:1.05rem;width:.6rem;height:2px;background:var(--accent)}
+
+.callout{border-left:6px solid var(--badge);background:var(--surface);padding:1.1rem 1.4rem;max-width:66ch;margin:1.8rem 0}
+.callout p{margin:0}
+.callout strong{font-family:var(--display)}
+
+/* tabs */
+.tablist{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.tab{font:600 .95rem var(--display);padding:.55rem 1rem;border-radius:999px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.tabpanel{margin-top:1.6rem;max-width:66ch}
+.tabpanel .local{border-top:1px solid var(--line);padding-top:.9rem;color:var(--muted)}
+.tabpanel .local b{font-family:var(--display);color:var(--ink)}
+
+/* sector explorer */
+.explorer{display:grid;grid-template-columns:230px 1fr;gap:2.2rem;margin-top:1.6rem}
+.sectors{display:flex;flex-direction:column;gap:.2rem}
+.sector{text-align:left;font:600 1rem var(--display);padding:.7rem .9rem;border:0;border-left:4px solid transparent;background:transparent;color:var(--ink);cursor:pointer;border-radius:0 8px 8px 0}
+.sector:hover{background:var(--surface)}
+.sector[aria-selected="true"]{border-left-color:var(--accent);background:var(--surface)}
+.sector-panel h3{font-size:1.5rem}
+.sector-panel dl{margin:1rem 0 0;display:grid;grid-template-columns:5.2rem 1fr;gap:1rem 1.2rem;max-width:62ch}
+.sector-panel dt{font:700 1rem var(--display);color:var(--accent)}
+.sector-panel dd{margin:0}
+
+.skills{list-style:none;padding:0;margin:1.2rem 0 0;max-width:66ch}
+.skills li{padding:.8rem 0;border-bottom:1px solid var(--line)}
+.skills b{font-family:var(--display);font-size:1.1rem}
+
+/* discussion */
+.stance{padding:1.4rem 0;border-top:1px solid var(--line);max-width:66ch}
+.stance .q{font:600 1.3rem/1.25 var(--display);margin-bottom:.9rem}
+.choices{display:flex;gap:.5rem;flex-wrap:wrap}
+.choice{font:600 .95rem var(--display);padding:.5rem 1rem;border-radius:8px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+.choice[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.reply{margin-top:1rem;color:var(--muted);min-height:1.5rem}
+.reply b{color:var(--ink);font-family:var(--display)}
+details{border-top:1px solid var(--line);padding:.9rem 0;max-width:66ch}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{font:600 1.1rem var(--display);cursor:pointer}
+details p{margin:.7rem 0 0;color:var(--muted)}
+
+footer{padding:2.5rem 0 3rem;border-top:1px solid var(--line);color:var(--muted);font-size:.95rem}
+
+@media (max-width:800px){
+  .hero{grid-template-columns:1fr;gap:2rem;padding-bottom:3rem}
+  .split{grid-template-columns:1fr}
+  .split>div:first-child{border-right:0;border-bottom:1px solid var(--line)}
+  .explorer{grid-template-columns:1fr;gap:1.2rem}
+  .sectors{flex-direction:row;overflow-x:auto;padding-bottom:.4rem}
+  .sector{white-space:nowrap;border-left:0;border-bottom:4px solid transparent;border-radius:8px 8px 0 0}
+  .sector[aria-selected="true"]{border-bottom-color:var(--accent)}
+  .sector-panel dl{grid-template-columns:1fr;gap:.2rem}
+  .sector-panel dd{margin-bottom:.8rem}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <nav aria-label="Sections">
+      <a href="#identity">Identity</a>
+      <a href="#change">What changed</a>
+      <a href="#local">Local jobs</a>
+      <a href="#skills">Skills</a>
+      <a href="#discuss">Discuss</a>
+    </nav>
+    <button class="btn-ghost" id="theme" type="button">Dark mode</button>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <h1>You are not your job title. But it is not nothing either.</h1>
+        <p class="lede">How work shapes who we are, how work has changed this century, and what that means for jobs close to home on the east coast of Ireland.</p>
+        <div class="hero-links">
+          <a class="btn" href="#local">See local jobs, then and now</a>
+          <a class="btn alt" href="#discuss">Jump to the discussion</a>
+        </div>
+      </div>
+    </div>
+
+    <section id="identity">
+      <h2>Work answers the question "who are you?" faster than almost anything else</h2>
+      <p>Ask a stranger what they do and you have sorted them within seconds. Work gives people pay, but it also gives structure, routine, status, a place to belong, and a short answer about who you are. Sociologists call the non-pay parts the hidden benefits of a job, and people notice them most when they lose them.</p>
+      <p>The 21st century has loosened the link between one person and one job. That frees some people and unsettles others.</p>
+
+      <div class="split">
+        <div>
+          <h3>A generation ago</h3>
+          <ul>
+            <li>One employer for many years was normal</li>
+            <li>Identity came from the job title: "I'm a fitter", "I'm a teacher"</li>
+            <li>A clear ladder: start at the bottom, move up slowly</li>
+            <li>Big local employers: the factory, the council, the shop on the main street</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Now</h3>
+          <ul>
+            <li>Several roles, and several employers, across a lifetime</li>
+            <li>Identity comes from skills, projects and values: "I do this, and also that"</li>
+            <li>Side income and online presence sit next to the main job</li>
+            <li>Work can be done from home, a hub, or another country's time zone</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout">
+        <p><strong>The risk on both sides.</strong> If your whole identity is one job, losing it hurts twice: income and self. If your identity is a personal brand, you are never off duty. Both cost something.</p>
+      </div>
+    </section>
+
+    <section id="change">
+      <h2>Six forces rewriting jobs</h2>
+      <p>None of these is a prediction. They are already happening. Pick one to see what it does and where you can spot it locally.</p>
+      <div class="tablist" role="tablist" aria-label="Forces changing work" id="tabs"></div>
+      <div class="tabpanel" id="tabpanel" role="tabpanel" tabindex="0"></div>
+    </section>
+
+    <section id="local">
+      <h2>Closer to home: how local workplaces are shifting</h2>
+      <p>The big trends look different on a Dublin commuter route or a Wicklow main street than they do in a textbook. Choose a sector to compare then, now and next. These are broad patterns, not statistics.</p>
+      <div class="explorer">
+        <div class="sectors" role="tablist" aria-label="Local sectors" id="sectors"></div>
+        <div class="sector-panel" id="sectorpanel" role="tabpanel" tabindex="0"></div>
+      </div>
+
+      <div class="callout">
+        <p><strong>Honest read.</strong> No job is safe by default. The most exposed work is routine, repeatable and low on learning. The most exposed people have one narrow skill and no plan to add a second. The gap is rarely talent. It is who keeps learning after the first job.</p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>What travels with you from job to job</h2>
+      <p>If roles keep changing, the thing to build is not a title. It is a set of skills and proof that you have them.</p>
+      <ul class="skills">
+        <li><b>Learn fast, repeatedly.</b> The ability to pick up a new tool or process in weeks beats knowing one tool for years.</li>
+        <li><b>Use digital tools without fear.</b> Spreadsheets, scheduling apps, basic code, AI tools. You do not need to master all of them, but you cannot avoid them.</li>
+        <li><b>Communicate clearly.</b> In writing, in person, and on a call. This is the skill that automation replaces last.</li>
+        <li><b>Run yourself.</b> Show up, hit deadlines and finish things when nobody is checking.</li>
+        <li><b>Keep proof.</b> References, certificates, a portfolio, a project you can show. Proof beats claims.</li>
+      </ul>
+    </section>
+
+    <section id="discuss">
+      <h2>Where do you stand?</h2>
+      <p>Pick a side on each statement. You will get the strongest case against your pick. The point is to argue it, not to be right first time.</p>
+      <div id="stances"></div>
+
+      <h3 style="margin-top:2.5rem">Questions to talk through</h3>
+      <details>
+        <summary>Which local jobs look very different from 20 years ago, and which are new?</summary>
+        <p>Think about shops, delivery, farming, trades and offices near you. What changed first: the tools, the hours, or the type of person hired?</p>
+      </details>
+      <details>
+        <summary>If your job disappeared tomorrow, what part of your identity would go with it?</summary>
+        <p>Separate the income, the routine, the people and the sense of purpose. Which one would be hardest to replace?</p>
+      </details>
+      <details>
+        <summary>Who benefits when workers are flexible: the worker, the employer, or both?</summary>
+        <p>Look at who carries the risk when hours change, work dries up or a contract ends.</p>
+      </details>
+      <details>
+        <summary>What would keep young people working near home?</summary>
+        <p>Consider transport, housing costs, broadband, apprenticeships, local hubs and employers willing to train.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <p>This site is a discussion starter built on broad patterns, not exact figures. Before quoting numbers, check current data from the Central Statistics Office (Labour Force Survey), the Skills and Labour Market Research Unit at SOLAS, the Department of Enterprise, Trade and Employment, and the OECD Employment Outlook.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  /* theme toggle */
+  var root=document.documentElement, tbtn=document.getElementById("theme");
+  function isDark(){var t=root.getAttribute("data-theme");if(t)return t==="dark";return window.matchMedia("(prefers-color-scheme: dark)").matches}
+  function label(){tbtn.textContent=isDark()?"Light mode":"Dark mode"}
+  tbtn.addEventListener("click",function(){root.setAttribute("data-theme",isDark()?"light":"dark");label()});
+  label();
+
+
+  /* tabs helper */
+  function makeTabs(container,items,render,labelKey){
+    var btns=[];
+    items.forEach(function(it,idx){
+      var b=document.createElement("button");
+      b.type="button";b.setAttribute("role","tab");b.textContent=it[labelKey];
+      b.className=container.id==="tabs"?"tab":"sector";
+      b.addEventListener("click",function(){select(idx)});
+      b.addEventListener("keydown",function(e){
+        var n=null;
+        if(e.key==="ArrowRight"||e.key==="ArrowDown")n=(idx+1)%items.length;
+        if(e.key==="ArrowLeft"||e.key==="ArrowUp")n=(idx-1+items.length)%items.length;
+        if(n!==null){e.preventDefault();select(n);btns[n].focus()}
+      });
+      container.appendChild(b);btns.push(b);
+    });
+    function select(n){
+      btns.forEach(function(b,k){b.setAttribute("aria-selected",String(k===n));b.tabIndex=k===n?0:-1});
+      render(items[n]);
+    }
+    select(0);
+  }
+
+  var forces=[
+    {n:"Automation",
+     t:"Machines took over repetitive physical work first. Software and robots now take over repetitive thinking tasks too: data entry, basic scheduling, till work. Jobs rarely vanish overnight. The tasks inside them disappear and the job changes shape.",
+     l:"Self-checkouts in supermarkets, online forms replacing counter service."},
+    {n:"Remote and hybrid",
+     t:"Covid-19 proved that a lot of office work can be done from anywhere. Hybrid is now common for desk jobs, and Irish law lets employees request remote working. Where you live and where you work no longer have to match.",
+     l:"Co-working hubs in smaller towns, and a lighter commute on some days of the week."},
+    {n:"Gig and flexible work",
+     t:"Apps match workers to short jobs. That brings freedom and no boss over your shoulder, but also no guaranteed hours, and less built-in sick pay or pension. The risk moves from the business to the worker.",
+     l:"Delivery riders and drivers on apps, and contract workers paid per job or per shift."},
+    {n:"Globalisation",
+     t:"Ireland's economy is closely tied to multinational firms. A decision made in another country can create hundreds of local jobs or remove them. Careers depend on markets you cannot see from your own street.",
+     l:"Dublin's tech, finance and pharma employers draw workers from Wicklow, Kildare and beyond."},
+    {n:"Green transition",
+     t:"Climate targets change what work is needed: retrofitting homes, heat pumps, solar panels, EV charging, energy management. Some old skills fade while new technical ones are in demand.",
+     l:"Growing demand for electricians, plumbers and building-energy skills."},
+    {n:"AI tools",
+     t:"AI tools can now draft, summarise, translate, code and design. Entry-level work is hit first because that is where routine tasks sit. People who can direct these tools and check the output gain ground. People who only do what the tool does lose it.",
+     l:"Office and customer-service roles change first. Hands-on trades and care work are less exposed for now."}
+  ];
+  var tp=document.getElementById("tabpanel");
+  makeTabs(document.getElementById("tabs"),forces,function(f){
+    tp.innerHTML="";
+    var h=document.createElement("h3");h.textContent=f.n;
+    var p=document.createElement("p");p.textContent=f.t;
+    var l=document.createElement("p");l.className="local";
+    l.innerHTML="<b>Local sign:</b> ";l.appendChild(document.createTextNode(f.l));
+    tp.appendChild(h);tp.appendChild(p);tp.appendChild(l);
+  },"n");
+
+  var sectors=[
+    {n:"Retail",
+     a:"Counters, till operators, small local shops, fixed shop-floor hours.",
+     b:"Self-checkouts, click-and-collect, online competition, flexible rosters, and outside contractors handling shelf stocking and displays.",
+     c:"Fewer till roles, more work in stock, data and solving customer problems. Comfort with technology becomes a basic requirement."},
+    {n:"Hospitality and tourism",
+     a:"Seasonal, informal hiring, often through who you knew.",
+     b:"Strong tourism demand on the east coast, recurring staff shortages, online bookings and public reviews as part of the job.",
+     c:"Multi-skilled staff, language skills and customer experience matter more. Clear career paths will decide who stays."},
+    {n:"Trades and construction",
+     a:"Apprenticeships mainly in traditional crafts, work centred on new builds.",
+     b:"Housing demand, retrofitting, heat pumps, solar and EV charging. Digital tools on site. Apprenticeships now cover more than the traditional crafts.",
+     c:"Green and energy skills in demand. Tradespeople who add digital skills will have the most options."},
+    {n:"Office, tech and services",
+     a:"A fixed nine-to-five desk job, with a long daily commute into Dublin.",
+     b:"Hybrid working, many multinational employers in Dublin, DART and bus commuters, and collaboration tools doing the job of the meeting room.",
+     c:"AI tools reshape entry-level tasks. People who can work with them and explain their results will stand out."},
+    {n:"Farming and food",
+     a:"Family labour, local markets, little data.",
+     b:"Precision technology, tighter margins, diversification into farm shops and agri-tourism.",
+     c:"Sustainability rules and data skills shape who can make a living from the land."},
+    {n:"Public service and defence",
+     a:"Stable, pensionable, hierarchical, paper-based.",
+     b:"Digital services, recruitment and retention challenges, and technical and cyber roles joining traditional ones.",
+     c:"Security and technology skills sit alongside discipline and physical fitness in demand."}
+  ];
+  var sp=document.getElementById("sectorpanel");
+  makeTabs(document.getElementById("sectors"),sectors,function(s){
+    sp.innerHTML="";
+    var h=document.createElement("h3");h.textContent=s.n;
+    var dl=document.createElement("dl");
+    [["Then",s.a],["Now",s.b],["Next",s.c]].forEach(function(r){
+      var dt=document.createElement("dt");dt.textContent=r[0];
+      var dd=document.createElement("dd");dd.textContent=r[1];
+      dl.appendChild(dt);dl.appendChild(dd);
+    });
+    sp.appendChild(h);sp.appendChild(dl);
+  },"n");
+
+  /* stances */
+  var stances=[
+    {q:"A job you do for pay should not be your main identity.",
+     pro:"Jobs end. Companies close, roles get automated, people get let go. An identity built on values, skills and relationships survives a bad year at work.",
+     con:"Work takes up a huge share of your waking life. Pretending it is separate from who you are ignores how much it shapes your habits, friends and pride."},
+    {q:"Remote work is good for local communities.",
+     pro:"People who work from home spend money in local shops and cafes, and stay in the area instead of moving to the city.",
+     con:"Remote workers can be isolated and tied to employers elsewhere. Local businesses that relied on commuter footfall may lose out, and not every job can be remote."},
+    {q:"AI will make entry-level jobs harder to get.",
+     pro:"Entry-level work is full of routine tasks, which are exactly what AI tools do well. If employers need fewer beginners, the first rung of the ladder gets thinner.",
+     con:"New tools also create new jobs, and employers still need people who can learn on the job. The beginners who learn to use AI well may be hired ahead of those who don't."}
+  ];
+  var host=document.getElementById("stances");
+  stances.forEach(function(s){
+    var d=document.createElement("div");d.className="stance";
+    var q=document.createElement("p");q.className="q";q.textContent=s.q;
+    var c=document.createElement("div");c.className="choices";
+    var r=document.createElement("div");r.className="reply";r.setAttribute("aria-live","polite");
+    var btns=[];
+    ["Agree","Not sure","Disagree"].forEach(function(lab){
+      var b=document.createElement("button");b.type="button";b.className="choice";b.textContent=lab;b.setAttribute("aria-pressed","false");
+      b.addEventListener("click",function(){
+        btns.forEach(function(x){x.setAttribute("aria-pressed","false")});
+        b.setAttribute("aria-pressed","true");
+        r.innerHTML="";
+        function line(head,txt){var p=document.createElement("p");p.style.margin="0 0 .6rem";var bb=document.createElement("b");bb.textContent=head+" ";p.appendChild(bb);p.appendChild(document.createTextNode(txt));r.appendChild(p)}
+        if(lab==="Agree")line("The best case against:",s.con);
+        else if(lab==="Disagree")line("The best case for:",s.pro);
+        else{line("The case for:",s.pro);line("The case against:",s.con)}
+      });
+      c.appendChild(b);btns.push(b);
+    });
+    d.appendChild(q);d.appendChild(c);d.appendChild(r);host.appendChild(d);
+  });
+})();
+</script>
+</body>
+</html>
